@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<table class="bg-gray-2">
+    
+    <h1>Visualizar Reserva</h1>
+    
+    <div>
+        <p class="text-weight-bold">Dados da Reserva:</p>
+  
+        <section class="container-fluid p-2x">
+          <div class="content" id="idsn30">
+            <div class="row align-items-center mb-2">
+              <div class="col-md-1 col-sm-12 text-weight-bold">CNPJ:</div>
+              <div id="nome-completo" class="col-md-11 col-sm-12">{{ object.cnpj_empresa }}</div>
+            </div>
+            <div class="row align-items-center mb-2">
+              <div class="col-md-1 col-sm-12 text-weight-bold">Nome:</div>
+              <div id="nome-completo" class="col-md-11 col-sm-12">{{ object.nome_empresa }}</div>
+            </div>
+            <div class="row align-items-center mb-2">
+              <div class="col-md-1 col-sm-12 text-weight-bold">Categoria:</div>
+              <div id="nome-completo" class="col-md-11 col-sm-12">{{ object.categoria }}</div>
+            </div>
+            <div class="row align-items-center mb-2">
+              <div class="col-md-1 col-sm-12 text-weight-bold">Status:</div>
+              <div id="opcao" class="col-md-11 col-sm-12">{{ object.quitado }}</div>
+            </div>
+            <div class="row align-items-center mb-2">
+                <div class="col-md-1 col-sm-12 text-weight-bold">Stand:</div>
+                <div id="opcao" class="col-md-11 col-sm-12">{{ object.stand }}</div>
+              </div>
+        </section>
+        
+        <section class="container-fluid pt-2x">
+            <div class="row justify-content-between mt-6">
+                <div class="col-lg-1 col-md-2 col-sm-3 col-12">
+                    <a class="br-button block" href="{% url 'stands:reservas-list' %}" type="button">
+                        <i class="fas fa-chevron-left mr-2" aria-hidden="true"></i>Voltar
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12 pt-2 pt-sm-0">
+                    <a href="{{ link_create }}" class="br-button primary block" type="button">
+                        <i aria-hidden class="fas fa-plus mr-2"></i> Cadastrar
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+</table>
+
+{% endblock %}
