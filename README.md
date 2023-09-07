@@ -2,9 +2,6 @@
 
 An application to manager FINECAP stands.
 
-[![Built with Cookiecutter Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter)](https://github.com/cookiecutter/cookiecutter-django/)
-[![Black code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
-
 License: MIT
 
 ## Basic Commands
@@ -23,8 +20,7 @@ For convenience, you can keep your normal user logged in on Chrome and your supe
 
 ### Setting up static files
 
-- Este projeto utiliza o 
-- Padrão Digital de Governo Design System | Versão 3.4.0 | https://www.gov.br/ds/home
+- Este projeto utiliza o Padrão Digital de Governo Design System | Versão 3.4.0 | https://www.gov.br/ds/home
 
 ### Instalação
 
