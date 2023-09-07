@@ -1,0 +1,41 @@
+.p-text {
+  width: 96px;
+  height: 19px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+}
+
+#footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  text-align: center;
+}
+
+
+.h1-title {
+  font-weight: 300;
+  font-size: 41.8px;
+  line-height: 58px;
+}
+
+.s-color {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 19px;
+  color: #1351B4;
+}
+
+.card-style {
+  width: 283px;
+  height: 80px;
+}
+
+.card-img{
+  width:25px;
+  height:
+  25px;
+}

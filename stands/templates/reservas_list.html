@@ -2,12 +2,14 @@
 
 {% block content %}
 
+<h1>Lista de Reservas</h1>
+
 <table class="bg-gray-2">
     <thead>
         <tr>
-            <th scope="col" class="text-blue-warm-vivid-70">CNPJ</th>
-            <th scope="col" class="text-blue-warm-vivid-70">Nome</th>
-            <th scope="col" class="text-blue-warm-vivid-70">Status</th>
+            <th scope="col" class="text-blue-warm-vivid-70 text-center">CNPJ</th>
+            <th scope="col" class="text-blue-warm-vivid-70 text-center">Nome</th>
+            <th scope="col" class="text-blue-warm-vivid-70 text-center">Status</th>
             <th scope="col" class="text-blue-warm-vivid-70 text-center">Ações</th>
         </tr>
     </thead>
@@ -39,14 +41,14 @@
                     type="button"
                     aria-label="editar"
                     title="editar"
-                    href="#">
+                    href="{% url 'stands:reservas-update' obj.pk %}">
                     <i class="fas fa-edit" aria-hidden="true"></i>
                 </a>
                 <a class="br-button circle"
                     type="button"
                     aria-label="excluir"
                     title="excluir"
-                    href="#">
+                    href="{% url 'stands:reservas-delete' obj.pk %}">
                         <i class="fas fa-trash" aria-hidden="true"></i>
                 </a>
             </td>
@@ -62,7 +64,7 @@
         </a>
     </div>
     <div class="col-lg-3 col-md-4 col-sm-6 col-12 pt-2 pt-sm-0">
-        <a href="{{ link_create }}" class="br-button primary block" type="button">
+        <a href="{% url 'stands:reservas-create' %}" class="br-button primary block" type="button">
             <i aria-hidden class="fas fa-plus mr-2"></i> Cadastrar
         </a>
     </div>
