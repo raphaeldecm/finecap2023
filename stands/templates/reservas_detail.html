@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<table class="bg-gray-2">
+    
+    <h1>Visualizar Reserva</h1>
+    
+    <div>
+        <p class="text-weight-bold">Dados da Reserva:</p>
+  
+        <section class="container-fluid p-2x">
+          <div class="content" id="idsn30">
+            <div class="row align-items-center mb-2">
+              <div class="col-md-1 col-sm-12 text-weight-bold">CNPJ:</div>
+              <div id="cnpj-empresa" class="col-md-11 col-sm-12">{{ object.cnpj_empresa }}</div>
+            </div>
+            <div class="row align-items-center mb-2">
+              <div class="col-md-1 col-sm-12 text-weight-bold">Nome:</div>
+              <div id="nome-empresa" class="col-md-11 col-sm-12">{{ object.nome_empresa }}</div>
+            </div>
+            <div class="row align-items-center mb-2">
+              <div class="col-md-1 col-sm-12 text-weight-bold">Categoria:</div>
+              <div id="categoria-empresa" class="col-md-11 col-sm-12">{{ object.get_categoria_empresa_display }}</div>
+            </div>
+            <div class="row align-items-center mb-2">
+              <div class="col-md-1 col-sm-12 text-weight-bold">Status:</div>
+              {% if object.quitado %}
+                <div id="opcao" class="col-md-11 col-sm-12">Pagamento Efetuado</div>
+              {% else %}
+                <div id="opcao" class="col-md-11 col-sm-12">Pagamento Pendente</div>
+              {% endif %}
+            </div>
+            <div class="row align-items-center mb-2">
+                <div class="col-md-1 col-sm-12 text-weight-bold">Stand:</div>
+                <div id="opcao" class="col-md-11 col-sm-12">{{ object.stand }}</div>
+              </div>
+        </section>
+        
+        <section class="container-fluid pt-2x">
+          <div class="row justify-content-between">
+              <div class="col-lg-1 col-md-1 col-12">
+                <a class="br-button block" href="{% url 'stands:reservas-list' %}" type="button">
+                  <i class="fas fa-chevron-left mr-1" aria-hidden="true"></i>
+                  Voltar
+                </a>
+              </div>
+          
+              <div class="col-lg-5 col-md-5 col-12 mt-3 mt-md-0">
+                <a
+                  style="text-decoration: none"
+                  href="{% url 'stands:reservas-update' object.pk %}"
+                  class="br-button primary block mt-3 mt-sm-0 p-0"
+                  type="button"
+                >
+                  <i class="fas fa-edit mr-1" aria-hidden="true"></i>
+                  Editar
+                </a>
+              </div>
+          </div>
+        </section>
+    </div>
+</table>
+
+{% endblock %}
