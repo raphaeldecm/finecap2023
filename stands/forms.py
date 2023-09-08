@@ -1,5 +1,6 @@
 from django import forms
 
+from core.widgets import GovbrSelect
 from stands.models import Reserva, Stand
 
 
@@ -26,7 +27,8 @@ class ReservaForm(forms.ModelForm):
     categoria_empresa = forms.ChoiceField(
         choices=Reserva.Categoria.choices,
         label="Cetagoria",
-        initial=Reserva.Categoria.TEC,
+        # initial=Reserva.Categoria.TEC,
+        widget=GovbrSelect,
     )
     quitado = forms.BooleanField(
         required=False,
@@ -38,6 +40,7 @@ class ReservaForm(forms.ModelForm):
         queryset=Stand.objects.all(),
         label="Stand",
         required=True,
+        widget=GovbrSelect,
     )
 
     class Meta:
