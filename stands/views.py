@@ -27,7 +27,7 @@ def reservas_create(request):
             return redirect("stands:reservas-list")
     else:
         form = ReservaForm()
-    print("erros: ", form.errors)
+    
     return render(request, "reservas_form.html", {"form": form})
 
 def reservas_update(request, id):
