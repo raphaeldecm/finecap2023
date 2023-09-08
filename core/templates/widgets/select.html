@@ -1,0 +1,30 @@
+{% load static %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'css/select.css' %}">
+{% endblock %}
+
+<div class="br-select">
+    <div class="br-input">
+        <input type="text" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %}>
+
+        <button class="br-button" type="button" aria-label="Exibir lista" tabindex="-1" data-trigger="data-trigger"><i class="fas fa-angle-down" aria-hidden="true"></i>
+        </button>
+    </div>
+
+    {% with id=widget.attrs.id %}
+        <div {% if widget.attrs.class %} class="{{ widget.attrs.class }}"{% endif %}>
+            <div class="br-list" tabindex="0">
+                {% for group, options, index in widget.optgroups %}
+                    {% if group %}
+                        <label>{{ group }}</label>
+                    {% endif %}
+                    {% for option in options %}
+                        <div class="br-item" tabindex="-1">
+                            {% include option.template_name with widget=option %}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+    {% endwith %}
+</div>
