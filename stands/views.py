@@ -1,49 +1,31 @@
 from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse_lazy
+from django.views import generic
 
 from .forms import ReservaForm
 from .models import Reserva
 
 
 # Create your views here.
-def index(request):
-    return render(request, "index.html")
+class HomeView(generic.TemplateView):
+    template_name = "index.html"
 
-def reservas_list(request):
-    context = {
-        "reservas": Reserva.objects.all()
-    }
-    return render(request, "reservas_list.html", context)
+class ReservasListView(generic.ListView):
+    model = Reserva
 
-def reservas_detail(request, id):
-    obj = get_object_or_404(Reserva, id=id)
-    return render(request, "reservas_detail.html", {"object": obj})
+class ReservaDetailView(generic.DetailView):
+    model = Reserva
 
-def reservas_create(request):
-    if request.method == 'POST':
-        form = ReservaForm(request.POST)
-        if form.is_valid():
-            form.save()
-            form = ReservaForm()
-            return redirect("stands:reservas-list")
-    else:
-        form = ReservaForm()
-    
-    return render(request, "reservas_form.html", {"form": form})
+class ReservaCreateView(generic.CreateView):
+    model = Reserva
+    form_class = ReservaForm
+    success_url = reverse_lazy("stands:reservas-list")
 
-def reservas_update(request, id):
-    reserva = get_object_or_404(Reserva, id=id)
+class ReservaUpdateView(generic.UpdateView):
+    model = Reserva
+    form_class = ReservaForm
+    success_url = reverse_lazy("stands:reservas-list")
 
-    if request.method == 'POST':
-        form = ReservaForm(request.POST, instance=reserva)
-
-        if form.is_valid():
-            form.save()
-            return redirect("stands:reservas-list")
-    else:
-        form = ReservaForm(instance=reserva)
-
-    return render(request, 'reservas_form.html', {"form": form})
-
-def reservas_delete(request, id):
-    get_object_or_404(Reserva, id=id).delete()
-    return redirect("stands:reservas-list")
+class ReservaDeleteView(generic.DeleteView):
+    model = Reserva
+    success_url = reverse_lazy("stands:reservas-list")

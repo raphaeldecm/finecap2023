@@ -4,10 +4,10 @@ from . import views
 
 app_name = "stands"
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('reservas/list/', views.reservas_list, name='reservas-list'),
-    path('reservas/detail/<int:id>/', views.reservas_detail, name='reservas-detail'),
-    path('reservas/update/<int:id>/', views.reservas_update, name='reservas-update'),
-    path('reservas/delete/<int:id>/', views.reservas_delete, name='reservas-delete'),
-    path('reservas/create/', views.reservas_create, name='reservas-create'),
+    path('', views.HomeView.as_view(), name='index'),
+    path('reservas/list/', views.ReservasListView.as_view(), name='reservas-list'),
+    path('reservas/detail/<int:pk>/', views.ReservaDetailView.as_view(), name='reservas-detail'),
+    path('reservas/update/<int:pk>/', views.ReservaUpdateView.as_view(), name='reservas-update'),
+    path('reservas/delete/<int:pk>/', views.ReservaDeleteView.as_view(), name='reservas-delete'),
+    path('reservas/create/', views.ReservaCreateView.as_view(), name='reservas-create'),
 ]
