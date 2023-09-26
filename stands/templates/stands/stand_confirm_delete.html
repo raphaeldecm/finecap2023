@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<h1>Definir Reserva</h1>
+
+<form method="post">
+    <section class="form container-fluid p-5x">
+        {% csrf_token %}
+        <p> Você tem certeza que quer deletar a reserva "{{ object }}"?</p>
+        {{ form }}
+    </section>
+
+    <section class="container-fluid mt-2">
+        <div class="row justify-content-between">
+            <div class="col-lg-2 col-md-3  col-12 mt-3">
+            <a type="button" class="br-button block" href="{% url 'reservas:reservas-list' %}"> <i class="fas fa-times mr-1"
+                aria-hidden="true"></i>Cancelar</a>
+            </div>
+            <div class="col-lg-6 col-md-8 col-12">
+            <div class="row justify-content-end">
+                <div class="col-lg-4 col-md-5 col-12 mt-3 ">
+                <button class="br-button primary block mt-3 mt-sm-0 " type="submit">
+                    <i class="fas fa-check mr-1" aria-hidden="true"></i>
+                    Confirmar
+                </button>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+</form>
+{% endblock %}

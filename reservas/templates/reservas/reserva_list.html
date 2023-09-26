@@ -34,21 +34,21 @@
                     type="button"
                     aria-label="detalhar"
                     title="visualizar"
-                    href="{% url 'stands:reservas-detail' object.pk %}">
+                    href="{% url 'reservas:reservas-detail' object.pk %}">
                     <i class="fas fa-eye" aria-hidden="true"></i>
                 </a>
                 <a class="br-button circle"
                     type="button"
                     aria-label="editar"
                     title="editar"
-                    href="{% url 'stands:reservas-update' object.pk %}">
+                    href="{% url 'reservas:reservas-update' object.pk %}">
                     <i class="fas fa-edit" aria-hidden="true"></i>
                 </a>
                 <a class="br-button circle"
                     type="button"
                     aria-label="excluir"
                     title="excluir"
-                    href="{% url 'stands:reservas-delete' object.pk %}">
+                    href="{% url 'reservas:reservas-delete' object.pk %}">
                         <i class="fas fa-trash" aria-hidden="true"></i>
                 </a>
             </td>
@@ -65,12 +65,12 @@
 
 <div class="row justify-content-between mt-6">
     <div class="col-lg-1 col-md-2 col-sm-3 col-12">
-        <a class="br-button block" href="{% url 'stands:index' %}" type="button">
+        <a class="br-button block" href="{% url 'core:home' %}" type="button">
             <i class="fas fa-chevron-left mr-2" aria-hidden="true"></i>Voltar
         </a>
     </div>
     <div class="col-lg-3 col-md-4 col-sm-6 col-12 pt-2 pt-sm-0">
-        <a href="{% url 'stands:reservas-create' %}" class="br-button primary block" type="button">
+        <a href="{% url 'reservas:reservas-create' %}" class="br-button primary block" type="button">
             <i aria-hidden class="fas fa-plus mr-2"></i> Cadastrar
         </a>
     </div>
