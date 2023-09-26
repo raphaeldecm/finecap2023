@@ -2,14 +2,13 @@
 
 {% block content %}
 
-<h1>Lista de Reservas</h1>
+<h1>Lista de Stands</h1>
 
 <table class="bg-gray-2">
     <thead>
         <tr>
-            <th scope="col" class="text-blue-warm-vivid-70 text-center">CNPJ</th>
-            <th scope="col" class="text-blue-warm-vivid-70 text-center">Nome</th>
-            <th scope="col" class="text-blue-warm-vivid-70 text-center">Status</th>
+            <th scope="col" class="text-blue-warm-vivid-70 text-center">Localização</th>
+            <th scope="col" class="text-blue-warm-vivid-70 text-center">Valor</th>
             <th scope="col" class="text-blue-warm-vivid-70 text-center">Ações</th>
         </tr>
     </thead>
@@ -17,38 +16,31 @@
         {% for object in object_list %}
         <tr>
             <td class="text-center">
-                {{ object.cnpj_empresa }}
+                {{ object.localizacao }}
             </td>
             <td class="text-center">
-                {{ object.nome_empresa }}
-            </td>
-            <td class="text-center">
-                {% if object.quitado %}
-                    <i class="fas fa-check" aria-hidden="true"></i>
-                {% else %}
-                    <i class="fas fa-times" aria-hidden="true"></i>
-                {% endif %}
+                {{ object.valor }}
             </td>
             <td class="text-center">
                 <a class="br-button circle"
                     type="button"
                     aria-label="detalhar"
                     title="visualizar"
-                    href="{% url 'reservas:reservas-detail' object.pk %}">
+                    href="{% url 'stands:stands-detail' object.pk %}">
                     <i class="fas fa-eye" aria-hidden="true"></i>
                 </a>
                 <a class="br-button circle"
                     type="button"
                     aria-label="editar"
                     title="editar"
-                    href="{% url 'reservas:reservas-update' object.pk %}">
+                    href="{% url 'stands:stands-update' object.pk %}">
                     <i class="fas fa-edit" aria-hidden="true"></i>
                 </a>
                 <a class="br-button circle"
                     type="button"
                     aria-label="excluir"
                     title="excluir"
-                    href="{% url 'reservas:reservas-delete' object.pk %}">
+                    href="{% url 'stands:stands-delete' object.pk %}">
                         <i class="fas fa-trash" aria-hidden="true"></i>
                 </a>
             </td>
@@ -56,7 +48,7 @@
         {% empty %}
         <tr>
             <td colspan="4">
-                <p>Não existem reservas cadastradas.</p>
+                <p>Não existem stands cadastrados.</p>
             </td>
         </tr>
         {% endfor %}
@@ -70,7 +62,7 @@
         </a>
     </div>
     <div class="col-lg-3 col-md-4 col-sm-6 col-12 pt-2 pt-sm-0">
-        <a href="{% url 'reservas:reservas-create' %}" class="br-button primary block" type="button">
+        <a href="{% url 'stands:stands-create' %}" class="br-button primary block" type="button">
             <i aria-hidden class="fas fa-plus mr-2"></i> Cadastrar
         </a>
     </div>

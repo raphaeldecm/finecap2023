@@ -4,43 +4,27 @@
 
 <table class="bg-gray-2">
     
-    <h1>Visualizar Reserva</h1>
+    <h1>Visualizar Stand</h1>
     
     <div>
-        <p class="text-weight-bold">Dados da Reserva:</p>
+        <p class="text-weight-bold">Dados do Stand:</p>
   
         <section class="container-fluid p-2x">
           <div class="content" id="idsn30">
             <div class="row align-items-center mb-2">
-              <div class="col-md-1 col-sm-12 text-weight-bold">CNPJ:</div>
-              <div id="cnpj-empresa" class="col-md-11 col-sm-12">{{ object.cnpj_empresa }}</div>
+              <div class="col-md-1 col-sm-12 text-weight-bold">Localização:</div>
+              <div id="localizacao-stand" class="col-md-11 col-sm-12">{{ object.localizacao }}</div>
             </div>
             <div class="row align-items-center mb-2">
-              <div class="col-md-1 col-sm-12 text-weight-bold">Nome:</div>
-              <div id="nome-empresa" class="col-md-11 col-sm-12">{{ object.nome_empresa }}</div>
+              <div class="col-md-1 col-sm-12 text-weight-bold">Valor:</div>
+              <div id="valor-stand" class="col-md-11 col-sm-12">{{ object.valor }}</div>
             </div>
-            <div class="row align-items-center mb-2">
-              <div class="col-md-1 col-sm-12 text-weight-bold">Categoria:</div>
-              <div id="categoria-empresa" class="col-md-11 col-sm-12">{{ object.get_categoria_empresa_display }}</div>
-            </div>
-            <div class="row align-items-center mb-2">
-              <div class="col-md-1 col-sm-12 text-weight-bold">Status:</div>
-              {% if object.quitado %}
-                <div id="opcao" class="col-md-11 col-sm-12">Pagamento Efetuado</div>
-              {% else %}
-                <div id="opcao" class="col-md-11 col-sm-12">Pagamento Pendente</div>
-              {% endif %}
-            </div>
-            <div class="row align-items-center mb-2">
-                <div class="col-md-1 col-sm-12 text-weight-bold">Stand:</div>
-                <div id="opcao" class="col-md-11 col-sm-12">{{ object.stand }}</div>
-              </div>
         </section>
         
         <section class="container-fluid pt-2x">
           <div class="row justify-content-between">
               <div class="col-lg-1 col-md-1 col-12">
-                <a class="br-button block" href="{% url 'reservas:reservas-list' %}" type="button">
+                <a class="br-button block" href="{% url 'stands:stands-list' %}" type="button">
                   <i class="fas fa-chevron-left mr-1" aria-hidden="true"></i>
                   Voltar
                 </a>
@@ -49,7 +33,7 @@
               <div class="col-lg-5 col-md-5 col-12 mt-3 mt-md-0">
                 <a
                   style="text-decoration: none"
-                  href="{% url 'reservas:reservas-update' object.pk %}"
+                  href="{% url 'stands:stands-update' object.pk %}"
                   class="br-button primary block mt-3 mt-sm-0 p-0"
                   type="button"
                 >

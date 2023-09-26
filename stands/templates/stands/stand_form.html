@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h1>Definir Reserva</h1>
+<h1>Definir Stand</h1>
 
 <form method="post" autocomplete="off">
     {% csrf_token %}
@@ -12,35 +12,14 @@
             <div class="col-md-7 col-lg-7 col-12">
                 <div class="col mb-3">
                     <div class="br-input">
-                        {{ form.cnpj_empresa.label_tag }}
-                        {{ form.cnpj_empresa }}
+                        {{ form.localizacao.label_tag }}
+                        {{ form.localizacao }}
                     </div>
                 </div>
                 <div class="col mb-3">
                     <div class="br-input">
-                        {{ form.nome_empresa.label_tag }}
-                        {{ form.nome_empresa }}
-                    </div>
-                </div>
-                <div class="col mb-3">
-                    <div class="br-input">
-                        {{ form.email_empresa.label_tag }}
-                        {{ form.email_empresa }}
-                    </div>
-                </div>
-                <div class="col mb-3">
-                    {{ form.categoria_empresa.label_tag }}
-                    {{ form.categoria_empresa }}
-                </div>
-                <span class="br-divider my-3"></span>
-                <div class="col mb-3">
-                    {{ form.stand.label_tag }}
-                    {{ form.stand }}
-                </div>
-                <div class="col-md-1 col-lg-1 col-12">
-                    <div class="br-input">
-                        {{ form.quitado.label_tag }}
-                        {{ form.quitado }}
+                        {{ form.valor.label_tag }}
+                        {{ form.valor }}
                     </div>
                 </div>
             </div>
@@ -50,7 +29,7 @@
     <section class="container-fluid mt-2">
         <div class="row justify-content-between">
             <div class="col-lg-2 col-md-3  col-12 mt-3">
-                <a type="button" class="br-button block" href="{% url 'reservas:reservas-list' %}"> <i class="fas fa-times mr-1"
+                <a type="button" class="br-button block" href="{% url 'stands:stands-list' %}"> <i class="fas fa-times mr-1"
                         aria-hidden="true"></i>Cancelar</a>
             </div>
             <div class="col-lg-6 col-md-8 col-12">

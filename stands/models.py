@@ -24,4 +24,4 @@ class Stand(BaseModel):
         verbose_name_plural = _("Stands")
 
     def __str__(self):
-        return f"{self.pk} | {self.localizacao}"
+        return f"{self.pk} | {self.localizacao} | {self.valor}"
