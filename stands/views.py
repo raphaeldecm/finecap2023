@@ -9,6 +9,7 @@ from .models import Stand
 # Create your views here.
 class StandsListView(generic.ListView):
     model = Stand
+    paginate_by = 5
 
 class StandDetailView(generic.DetailView):
     model = Stand

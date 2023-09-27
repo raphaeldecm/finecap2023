@@ -55,6 +55,125 @@
     </tbody>
 </table>
 
+<span class="br-divider my-3"></span>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+<span class="br-divider my-3"></span>
+
+{% if page_obj.has_other_pages %}
+    <nav>
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page=1">
+                        First
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                        Previous
+                    </a>
+                </li>
+            {% endif %}
+
+            {% for page_number in page_obj.paginator.page_range %}
+                {% if page_number <= page_obj.number|add:3 and page_number >= page_obj.number|add:-3 %}
+                    {% if page_obj.number == page_number %}
+                        <li class="page-item active">
+                            <a class="page-link" href="?page={{ page_number }}">
+                                {{ page_number }}
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_number }}">
+                                {{ page_number }}
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                        Next
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">
+                        Last
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endif %}
+
+<span class="br-divider my-3"></span>
+
+<nav class="br-pagination" aria-label="Paginação de resultados" data-total="50" data-current="1" data-per-page="20">
+    <div class="pagination-go-to-page d-none d-sm-flex ml-auto">
+      <div class="br-select">
+        <div class="br-input">
+          <label for="go-to-selection-random-95267">Página</label>
+          <input id="go-to-selection-random-95267" type="text" placeholder=" "/>
+          <button class="br-button" type="button" aria-label="Exibir lista" tabindex="-1" data-trigger="data-trigger"><i
+            class="fas fa-angle-down" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="br-list" tabindex="0">
+          {% for i in "x"|ljust:page_obj.paginator.num_pages %}
+            <div class="br-item" tabindex="-1">
+              <div class="br-radio br-link-pagination">
+                <input id="go-to-1-random-95267" type="radio" name="go-to-random-95267" value="go-to-1-random-95267"
+                  {% if page_obj.number ==  forloop.counter %} checked="checked" {% endif %} />
+                <label for="go-to-1-random-95267"><a class="fill"
+                                                     href="?page={{ forloop.counter }}">{{ forloop.counter }}</a></label>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <span class="br-divider d-none d-sm-block mx-3"></span>
+    <div class="pagination-arrows ml-auto ml-sm-0">
+      {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">
+          <button class="br-button circle" type="button" aria-label="Voltar página"><i class="fas fa-angle-left"
+                                                                                       aria-hidden="true"></i>
+          </button>
+        </a>
+      {% endif %}
+  
+      {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">
+          <button class="br-button circle" type="button" aria-label="Avançar página"><i class="fas fa-angle-right"
+                                                                                        aria-hidden="true"></i>
+          </button>
+        </a>
+      {% endif %}
+    </div>
+  </nav>
+  
+
 <div class="row justify-content-between mt-6">
     <div class="col-lg-1 col-md-2 col-sm-3 col-12">
         <a class="br-button block" href="{% url 'core:home' %}" type="button">

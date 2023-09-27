@@ -63,6 +63,50 @@
     </tbody>
 </table>
 
+<nav class="br-pagination" aria-label="Paginação de resultados" data-total="50" data-current="1" data-per-page="20">
+    <div class="pagination-go-to-page d-none d-sm-flex ml-auto">
+      <div class="br-select">
+        <div class="br-input">
+          <label for="go-to-selection-random-95267">Página</label>
+          <input id="go-to-selection-random-95267" type="text" placeholder=" "/>
+          <button class="br-button" type="button" aria-label="Exibir lista" tabindex="-1" data-trigger="data-trigger"><i
+            class="fas fa-angle-down" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="br-list" tabindex="0">
+          {% for i in "x"|ljust:page_obj.paginator.num_pages %}
+            <div class="br-item" tabindex="-1">
+              <div class="br-radio br-link-pagination">
+                <input id="go-to-1-random-95267" type="radio" name="go-to-random-95267" value="go-to-1-random-95267"
+                  {% if page_obj.number ==  forloop.counter %} checked="checked" {% endif %} />
+                <label for="go-to-1-random-95267"><a class="fill"
+                                                     href="?page={{ forloop.counter }}">{{ forloop.counter }}</a></label>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <span class="br-divider d-none d-sm-block mx-3"></span>
+    <div class="pagination-arrows ml-auto ml-sm-0">
+      {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">
+          <button class="br-button circle" type="button" aria-label="Voltar página"><i class="fas fa-angle-left"
+                                                                                       aria-hidden="true"></i>
+          </button>
+        </a>
+      {% endif %}
+  
+      {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">
+          <button class="br-button circle" type="button" aria-label="Avançar página"><i class="fas fa-angle-right"
+                                                                                        aria-hidden="true"></i>
+          </button>
+        </a>
+      {% endif %}
+    </div>
+  </nav>
+  
 <div class="row justify-content-between mt-6">
     <div class="col-lg-1 col-md-2 col-sm-3 col-12">
         <a class="br-button block" href="{% url 'core:home' %}" type="button">
