@@ -47,10 +47,10 @@
                 <a class="br-button circle"
                     type="button"
                     aria-label="excluir"
-                    title="excluir"
-                    href="{% url 'reservas:reservas-delete' object.pk %}">
-                        <i class="fas fa-trash" aria-hidden="true"></i>
+                    title="excluir">
+                    <i class="fas fa-trash" aria-hidden="true"></i>
                 </a>
+                {% include "reservas/reserva_confirm_delete.html" %}
             </td>
         </tr>
         {% empty %}

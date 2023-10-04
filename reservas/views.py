@@ -1,6 +1,5 @@
+from django.contrib import messages
 from django.contrib.messages import views
-from django.forms.models import BaseModelForm
-from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -20,11 +19,11 @@ class ReservaCreateView(views.SuccessMessageMixin, generic.CreateView):
     form_class = ReservaForm
     success_url = reverse_lazy("reservas:reservas-list")
     success_message = "Reserva cadastrada com sucesso!"
+    error_message = "Erro ao cadastrar reserva!"
 
     def form_invalid(self, form):
-        """If the form is invalid, render the invalid form."""
-        print("## ", form.errors)
-        return self.render_to_response(self.get_context_data(form=form))
+        messages.error(self.request, self.error_message)
+        return super().form_invalid(form)
 
 class ReservaUpdateView(views.SuccessMessageMixin, generic.UpdateView):
     model = Reserva

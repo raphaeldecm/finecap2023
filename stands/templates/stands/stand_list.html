@@ -38,11 +38,13 @@
                 </a>
                 <a class="br-button circle"
                     type="button"
+                    data-bs-toggle="modal" 
+                    data-bs-target="#exampleModal-{{ object.pk }}"
                     aria-label="excluir"
-                    title="excluir"
-                    href="{% url 'stands:stands-delete' object.pk %}">
+                    title="excluir">
                         <i class="fas fa-trash" aria-hidden="true"></i>
                 </a>
+                {% include "stands/stand_confirm_delete.html" %}
             </td>
         </tr>
         {% empty %}
@@ -54,80 +56,6 @@
         {% endfor %}
     </tbody>
 </table>
-
-<span class="br-divider my-3"></span>
-
-<div class="pagination">
-    <span class="step-links">
-        {% if page_obj.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-        {% endif %}
-
-        <span class="current">
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-        </span>
-
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">next</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-    </span>
-</div>
-
-<span class="br-divider my-3"></span>
-
-{% if page_obj.has_other_pages %}
-    <nav>
-        <ul class="pagination justify-content-center">
-            {% if page_obj.has_previous %}
-                <li class="page-item">
-                    <a class="page-link" href="?page=1">
-                        First
-                    </a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
-                        Previous
-                    </a>
-                </li>
-            {% endif %}
-
-            {% for page_number in page_obj.paginator.page_range %}
-                {% if page_number <= page_obj.number|add:3 and page_number >= page_obj.number|add:-3 %}
-                    {% if page_obj.number == page_number %}
-                        <li class="page-item active">
-                            <a class="page-link" href="?page={{ page_number }}">
-                                {{ page_number }}
-                            </a>
-                        </li>
-                    {% else %}
-                        <li class="page-item">
-                            <a class="page-link" href="?page={{ page_number }}">
-                                {{ page_number }}
-                            </a>
-                        </li>
-                    {% endif %}
-                {% endif %}
-            {% endfor %}
-
-            {% if page_obj.has_next %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">
-                        Next
-                    </a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">
-                        Last
-                    </a>
-                </li>
-            {% endif %}
-        </ul>
-    </nav>
-{% endif %}
-
-<span class="br-divider my-3"></span>
 
 <nav class="br-pagination" aria-label="Paginação de resultados" data-total="50" data-current="1" data-per-page="20">
     <div class="pagination-go-to-page d-none d-sm-flex ml-auto">

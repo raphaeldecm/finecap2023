@@ -1,34 +1,21 @@
-{% extends "base.html" %}
-
-
-{% block content %}
-<h1>Definir Reserva</h1>
-
-<form method="post">
-    <section class="form container-fluid p-5x">
-        {% csrf_token %}
-        <p> Você tem certeza que quer deletar a reserva "{{ object }}"?</p>
-        {{ form }}
-    </section>
-
-    <section class="container-fluid mt-2">
-        <div class="row justify-content-between">
-            <div class="col-lg-2 col-md-3  col-12 mt-3">
-            <a type="button" class="br-button block" href="{% url 'reservas:reservas-list' %}"> <i class="fas fa-times mr-1"
-                aria-hidden="true"></i>Cancelar</a>
-            </div>
-            <div class="col-lg-6 col-md-8 col-12">
-            <div class="row justify-content-end">
-                <div class="col-lg-4 col-md-5 col-12 mt-3 ">
-                <button class="br-button primary block mt-3 mt-sm-0 " type="submit">
-                    <i class="fas fa-check mr-1" aria-hidden="true"></i>
-                    Confirmar
-                </button>
-                </div>
-            </div>
-            </div>
+<form action="{% url 'reservas:reservas-delete' object.pk %}" method="post">
+    {% csrf_token %}
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmação de Exclusão</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-    </section>
-
+        <div class="modal-body">
+            Deseja excluir o registro {{ object }}?
+            {{ form }}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-danger">Excluir</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </form>
-{% endblock %}
