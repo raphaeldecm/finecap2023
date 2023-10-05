@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages import views
 from django.urls import reverse_lazy
 from django.views import generic
@@ -7,14 +8,14 @@ from .forms import ReservaForm
 from .models import Reserva
 
 
-class ReservasListView(generic.ListView):
+class ReservasListView(LoginRequiredMixin, generic.ListView):
     model = Reserva
     paginate_by = 5
 
-class ReservaDetailView(generic.DetailView):
+class ReservaDetailView(LoginRequiredMixin, generic.DetailView):
     model = Reserva
 
-class ReservaCreateView(views.SuccessMessageMixin, generic.CreateView):
+class ReservaCreateView(LoginRequiredMixin, views.SuccessMessageMixin, generic.CreateView):
     model = Reserva
     form_class = ReservaForm
     success_url = reverse_lazy("reservas:reservas-list")
@@ -25,12 +26,12 @@ class ReservaCreateView(views.SuccessMessageMixin, generic.CreateView):
         messages.error(self.request, self.error_message)
         return super().form_invalid(form)
 
-class ReservaUpdateView(views.SuccessMessageMixin, generic.UpdateView):
+class ReservaUpdateView(LoginRequiredMixin, views.SuccessMessageMixin, generic.UpdateView):
     model = Reserva
     form_class = ReservaForm
     success_url = reverse_lazy("reservas:reservas-list")
     success_message = "Reserva atualizada com sucesso!"
 
-class ReservaDeleteView(generic.DeleteView):
+class ReservaDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Reserva
     success_url = reverse_lazy("reservas:reservas-list")
