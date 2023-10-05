@@ -20,11 +20,6 @@ class ReservaCreateView(LoginRequiredMixin, views.SuccessMessageMixin, generic.C
     form_class = ReservaForm
     success_url = reverse_lazy("reservas:reservas-list")
     success_message = "Reserva cadastrada com sucesso!"
-    error_message = "Erro ao cadastrar reserva!"
-
-    def form_invalid(self, form):
-        messages.error(self.request, self.error_message)
-        return super().form_invalid(form)
 
 class ReservaUpdateView(LoginRequiredMixin, views.SuccessMessageMixin, generic.UpdateView):
     model = Reserva

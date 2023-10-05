@@ -21,10 +21,6 @@ class StandCreateView(LoginRequiredMixin, views.SuccessMessageMixin, generic.Cre
     success_url = reverse_lazy("stands:stands-list")
     success_message = "Stand cadastrado com sucesso!"
 
-    def form_invalid(self, form):
-        print(form.errors)
-        return super().form_invalid(form)
-
 
 class StandUpdateView(LoginRequiredMixin, views.SuccessMessageMixin, generic.UpdateView):
     model = Stand
