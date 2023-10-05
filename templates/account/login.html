@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load account socialaccount %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+{% block head_title %}{% translate "Sign In" %}{% endblock %}
+
+{% block content %}
+
+<div class="main-content pl-sm-3 mt-4" id="main-content">
+  <div class="row justify-content-between align-items-center">
+    <div class="col-md-7 col-sm-6 ">
+      <div class="div-login-background">
+        <img class="img-login-lady" src="{% static 'images/login.png' %}" alt="Imagem de Login" />
+      </div>
+    </div>
+    <div class="div-system-access col-md-5 col-lg-5 col-xl-5 col-12">
+      {% include "layouts/alerts.html" %}
+      <h1 class="text-h1">{% translate "Acesso ao Sistema" %}</h1>
+      <form class="login" method="POST" action="{% url 'account_login' %}">
+        {% csrf_token %}
+        <div class="br-input">
+          <label for="id_login">{% translate "Username:" %}</label>
+          <div class="input-group">
+            <div class="input-icon">
+              <i class="fas fa-user" aria-hidden="true"></i>
+            </div>
+            {{ form.login }}
+            <p>{% translate "Digite seu nome de usuário." %}</p>
+          </div>
+        </div>
+        <div class="br-input input-button">
+          <label for="id_password">{% translate "Senha:" %}</label>
+          <div class="input-group">
+            <div class="input-icon">
+              {% comment %} <i class="fas fa-user" aria-hidden="true"></i> {% endcomment %}
+            </div>
+            {{ form.password }}
+            <button class="br-button" type="button" aria-label="Mostrar senha">
+              <i class="fas fa-eye" aria-hidden="true"></i>
+            </button>
+            <p>{% translate "Digite sua senha de segurança." %}</p>
+          </div>
+        </div>
+        {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+        {% endif %}
+        <div class="forgot-password">
+          <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% translate "Esqueceu a senha?" %}</a>
+        </div>
+        <div class="mb-1">
+          <div class="br-checkbox">
+            <input id="keep_connected_checkbox" name="keep_connected_checkbox" type="checkbox"
+              aria-label="Manter-me conectado" />
+            <label for="keep_connected_checkbox">{% translate "Manter-me conectado" %}</label>
+          </div>
+        </div>
+        <button class="primaryAction br-button primary block" type="submit">{% translate "Sign In" %}</button>
+      </form>
+      <span class="br-divider my-3"></span>
+      <p class="first-access-href">
+        <a style="text-decoration-line: none" href="{% url 'account_reset_password' %}">{% translate "Primeiro Acesso?" %}</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
