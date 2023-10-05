@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages import views
 from django.urls import reverse_lazy
 from django.views import generic
@@ -7,14 +8,14 @@ from .models import Stand
 
 
 # Create your views here.
-class StandsListView(generic.ListView):
+class StandsListView(LoginRequiredMixin, generic.ListView):
     model = Stand
     paginate_by = 5
 
-class StandDetailView(generic.DetailView):
+class StandDetailView(LoginRequiredMixin, generic.DetailView):
     model = Stand
 
-class StandCreateView(views.SuccessMessageMixin, generic.CreateView):
+class StandCreateView(LoginRequiredMixin, views.SuccessMessageMixin, generic.CreateView):
     model = Stand
     form_class = StandForm
     success_url = reverse_lazy("stands:stands-list")
@@ -23,15 +24,15 @@ class StandCreateView(views.SuccessMessageMixin, generic.CreateView):
     def form_invalid(self, form):
         print(form.errors)
         return super().form_invalid(form)
-    
 
-class StandUpdateView(views.SuccessMessageMixin, generic.UpdateView):
+
+class StandUpdateView(LoginRequiredMixin, views.SuccessMessageMixin, generic.UpdateView):
     model = Stand
     form_class = StandForm
     success_url = reverse_lazy("stands:stands-list")
     success_message = "Stand atualizada com sucesso!"
 
-class StandDeleteView(generic.DeleteView):
+class StandDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Stand
     success_url = reverse_lazy("stands:stands-list")
     success_message = "Stand excluído com sucesso!"
