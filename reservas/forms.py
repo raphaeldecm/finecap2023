@@ -30,12 +30,6 @@ class ReservaForm(forms.ModelForm):
         label="Cetagoria",
         widget=GovbrSelect,
     )
-    quitado = forms.BooleanField(
-        required=False,
-        widget=forms.CheckboxInput(attrs={
-            "class": "form-control",
-        })
-    )
     stand = forms.ModelChoiceField(
         queryset=Stand.objects.all(),
         label="Stand",
