@@ -85,6 +85,8 @@ WSGI_APPLICATION = 'finecap.wsgi.application'
 AUTH_USER_MODEL = "users.User"
 LOGIN_REDIRECT_URL = "core:home"
 ACCOUNT_ALLOW_REGISTRATION = True
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+ACCOUNT_EMAIL_VERIFICATION = "none"
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases

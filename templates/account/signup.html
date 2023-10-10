@@ -11,11 +11,59 @@
 
 <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
   {% csrf_token %}
-  {{ form.as_p }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-  <button type="submit">{% trans "Sign Up" %} &raquo;</button>
+  <section class="form container-fluid p-5x">
+    <div class="row">
+      <div class="col-md-7 col-lg-7 col-12">
+      <div class="br-input">
+        <label for="id_login">{% translate "Username:" %}</label>
+        <div class="input-group">
+          <div class="input-icon">
+            <i class="fas fa-user" aria-hidden="true"></i>
+          </div>
+          {{ form.username }}
+          <p>{% translate "Digite seu nome de usuário." %}</p>
+        </div>
+      </div>
+      <div class="br-input">
+        <label for="id_login">{% translate "Email:" %}</label>
+        <div class="input-group">
+          <div class="input-icon">
+            <i class="fas fa-envelope" aria-hidden="true"></i>
+          </div>
+          {{ form.email }}
+          <p>{% translate "Digite seu email (opcional)." %}</p>
+        </div>
+      </div>
+      <div class="br-input input-button">
+        <label for="id_password">{% translate "Senha:" %}</label>
+        <div class="input-group">
+          <div class="input-icon">
+          </div>
+          {{ form.password1 }}
+          <button class="br-button" type="button" aria-label="Mostrar senha">
+            <i class="fas fa-eye" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+      <div class="br-input input-button">
+        <label for="id_password">{% translate "Confirmar Senha:" %}</label>
+        <div class="input-group">
+          <div class="input-icon">
+          </div>
+          {{ form.password2 }}
+          <button class="br-button" type="button" aria-label="Mostrar senha">
+            <i class="fas fa-eye" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+      
+      {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+      <button class="mt-3 primaryAction br-button primary block" type="submit">{% translate "Sign Up" %}</button>
+      </div>
+    </div>
+</section>
 </form>
 
 {% endblock content %}
