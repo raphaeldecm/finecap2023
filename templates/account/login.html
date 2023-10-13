@@ -20,7 +20,6 @@
       </div>
     </div>
     <div class="div-system-access col-md-5 col-lg-5 col-xl-5 col-12">
-      {% include "layouts/alerts.html" %}
       <h1 class="text-h1">{% translate "Acesso ao Sistema" %}</h1>
       <form class="login" method="POST" action="{% url 'account_login' %}">
         {% csrf_token %}
