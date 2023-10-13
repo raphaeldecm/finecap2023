@@ -29,6 +29,7 @@ class StandForm(forms.ModelForm):
             raise forms.ValidationError(
                 "O campo localização não pode ser Raphael.",
             )
+        return localizacao
 
     class Meta:
         model = Stand
