@@ -12,6 +12,9 @@ class StandsListView(LoginRequiredMixin, generic.ListView):
     model = Stand
     paginate_by = 5
 
+    def get_queryset(self):
+        return Stand.objects.filter(created_by=self.request.user)
+    
 class StandDetailView(LoginRequiredMixin, generic.DetailView):
     model = Stand
 

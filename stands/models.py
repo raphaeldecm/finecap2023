@@ -10,7 +10,6 @@ class Stand(BaseModel):
     localizacao = models.CharField(
         verbose_name=_("Localização"),
         max_length=SMALL_CHAR_FIELD_NAME_LENGTH,
-        validators=[validate_stand_localizacao]
     )
     valor = models.DecimalField(
         verbose_name=_("Valor"),

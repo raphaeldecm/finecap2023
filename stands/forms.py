@@ -22,7 +22,7 @@ class StandForm(forms.ModelForm):
     def clean_valor(self):
         valor = self.cleaned_data["valor"]
         return Decimal(valor.replace(",", "."))
-    
+
     def clean_localizacao(self):
         localizacao = self.cleaned_data["localizacao"]
         if localizacao == "Raphael":
