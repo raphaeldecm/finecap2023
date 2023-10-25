@@ -2,19 +2,24 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages import views
 from django.urls import reverse_lazy
 from django.views import generic
+from django_filters.views import FilterView
 
+from .filters import StandFilter
 from .forms import StandForm
 from .models import Stand
 
 
 # Create your views here.
-class StandsListView(LoginRequiredMixin, generic.ListView):
+class StandsListView(LoginRequiredMixin, FilterView):
     model = Stand
     paginate_by = 5
+    ordering = ["-created_at"]
+    filterset_class = StandFilter
+    template_name = "stands/stand_list.html"
 
     def get_queryset(self):
         return Stand.objects.filter(created_by=self.request.user)
-    
+
 class StandDetailView(LoginRequiredMixin, generic.DetailView):
     model = Stand
 

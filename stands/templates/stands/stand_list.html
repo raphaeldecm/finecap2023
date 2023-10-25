@@ -2,6 +2,23 @@
 
 {% block content %}
 
+<form method="GET" action="{% url 'stands:stands-list' %}" autocomplete="off">
+  {% load i18n %}
+<div class="row table-component-curriculum mx-0 mb-3 px-2 pb-4">
+  <div class="col-12 mx-0 mt-3">
+    <p>{% translate "Filtros" %}</p>
+    <span class="br-divider sm mt-3"></span>
+  </div>
+  {{ filter.form.as_p }}
+  <div class="{% block css_filter_button %}col-12 mt-3{% endblock %} d-flex align-items-end">
+     <button class="br-button primary rounder-md flex-grow-1 mb-1" type="submit" name="filtrar">
+       <i class="fa fa-filter"></i>
+       {% translate "Filtrar" %}
+     </button>
+  </div>
+</div>
+</form>
+
 <h1>Lista de Stands</h1>
 
 <table class="bg-gray-2">
