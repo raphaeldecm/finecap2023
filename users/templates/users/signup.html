@@ -9,7 +9,7 @@
 
 <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
 
-<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+<form class="signup" id="signup_form" method="post">
   {% csrf_token %}
   <section class="form container-fluid p-5x">
     <div class="row">

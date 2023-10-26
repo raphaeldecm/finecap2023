@@ -42,9 +42,6 @@ INSTALLED_APPS = [
     'stands',
     'reservas',
     'users',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
 ]
 
 MIDDLEWARE = [
@@ -55,7 +52,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = 'finecap.urls'
@@ -76,19 +72,11 @@ TEMPLATES = [
     },
 ]
 
-AUTHENTICATION_BACKENDS = [
-    # Needed to login by username in Django admin, regardless of `allauth`
-    'django.contrib.auth.backends.ModelBackend',
-    # `allauth` specific authentication methods, such as login by email
-    'allauth.account.auth_backends.AuthenticationBackend',
-]
-
 WSGI_APPLICATION = 'finecap.wsgi.application'
 AUTH_USER_MODEL = "users.User"
 LOGIN_REDIRECT_URL = "core:home"
-ACCOUNT_ALLOW_REGISTRATION = True
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-ACCOUNT_EMAIL_VERIFICATION = "none"
+LOGOUT_REDIRECT_URL = "users:login"
+LOGIN_URL = "users:login"
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases

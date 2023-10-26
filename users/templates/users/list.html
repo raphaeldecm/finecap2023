@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+
+<h1>Lista de Usuários</h1>
+
+<table class="bg-gray-2">
+    <thead>
+        <tr>
+            <th scope="col" class="text-blue-warm-vivid-70 text-center">Usuário</th>
+            <th scope="col" class="text-blue-warm-vivid-70 text-center">Email</th>
+            <th scope="col" class="text-blue-warm-vivid-70 text-center">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for object in object_list %}
+        <tr>
+            <td class="text-center">
+                {{ object.username }}
+            </td>
+            <td class="text-center">
+                {{ object.email }}
+            </td>
+            <td class="text-center">
+                <a class="br-button circle"
+                    type="button"
+                    aria-label="detalhar"
+                    title="visualizar"
+                    href="">
+                    <i class="fas fa-eye" aria-hidden="true"></i>
+                </a>
+                <a class="br-button circle"
+                    type="button"
+                    aria-label="editar"
+                    title="editar"
+                    href="">
+                    <i class="fas fa-edit" aria-hidden="true"></i>
+                </a>
+                <a class="br-button circle"
+                    type="button"
+                    data-bs-toggle="modal" 
+                    data-bs-target="#exampleModal-{{ object.pk }}"
+                    aria-label="excluir"
+                    title="excluir">
+                        <i class="fas fa-trash" aria-hidden="true"></i>
+                </a>
+                {% comment %} {% include "stands/stand_confirm_delete.html" %} {% endcomment %}
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">
+                <p>Não existem stands cadastrados.</p>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<nav class="br-pagination" aria-label="Paginação de resultados" data-total="50" data-current="1" data-per-page="20">
+    <div class="pagination-go-to-page d-none d-sm-flex ml-auto">
+      <div class="br-select">
+        <div class="br-input">
+          <label for="go-to-selection-random-95267">Página</label>
+          <input id="go-to-selection-random-95267" type="text" placeholder=" "/>
+          <button class="br-button" type="button" aria-label="Exibir lista" tabindex="-1" data-trigger="data-trigger"><i
+            class="fas fa-angle-down" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="br-list" tabindex="0">
+          {% for i in "x"|ljust:page_obj.paginator.num_pages %}
+            <div class="br-item" tabindex="-1">
+              <div class="br-radio br-link-pagination">
+                <input id="go-to-1-random-95267" type="radio" name="go-to-random-95267" value="go-to-1-random-95267"
+                  {% if page_obj.number ==  forloop.counter %} checked="checked" {% endif %} />
+                <label for="go-to-1-random-95267"><a class="fill"
+                                                     href="?page={{ forloop.counter }}">{{ forloop.counter }}</a></label>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <span class="br-divider d-none d-sm-block mx-3"></span>
+    <div class="pagination-arrows ml-auto ml-sm-0">
+      {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">
+          <button class="br-button circle" type="button" aria-label="Voltar página"><i class="fas fa-angle-left"
+                                                                                       aria-hidden="true"></i>
+          </button>
+        </a>
+      {% endif %}
+  
+      {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">
+          <button class="br-button circle" type="button" aria-label="Avançar página"><i class="fas fa-angle-right"
+                                                                                        aria-hidden="true"></i>
+          </button>
+        </a>
+      {% endif %}
+    </div>
+  </nav>
+  
+
+<div class="row justify-content-between mt-6">
+    <div class="col-lg-1 col-md-2 col-sm-3 col-12">
+        <a class="br-button block" href="{% url 'core:home' %}" type="button">
+            <i class="fas fa-chevron-left mr-2" aria-hidden="true"></i>Voltar
+        </a>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-6 col-12 pt-2 pt-sm-0">
+        <a href="#" class="br-button primary block" type="button">
+            <i aria-hidden class="fas fa-plus mr-2"></i> Cadastrar
+        </a>
+    </div>
+</div>
+
+
+{% endblock %}

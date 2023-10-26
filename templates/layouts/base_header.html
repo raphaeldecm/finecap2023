@@ -36,7 +36,7 @@
                                                     <span class="text-bold"> {{ request.user }} </span><br/>
                                                     <small> {{ request.user.email }} </small></div>
                                                 <div class="col-2">
-                                                    <form method="post" action="{% url 'account_logout' %}">
+                                                    <form method="post" action="{% url 'users:logout' %}">
                                                         {% csrf_token %}
                                                         {% if redirect_field_value %}
                                                         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
