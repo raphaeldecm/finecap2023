@@ -1,6 +1,33 @@
 {% extends "base.html" %}
-
+{% load i18n %}
 {% block content %}
+
+<form method="GET" action="{% url 'reservas:reservas-list' %}" autocomplete="off">
+  <section class="form container-fluid p-5x">
+    <div class="row">
+      <div class="col-12 mx-0 mt-3">
+        <p>{% translate "Filtros" %}</p>
+        <span class="br-divider sm mt-3"></span>
+      </div>
+      <div class="col-12 mx-0 mt-3">
+        <div class="br-input input-inline">
+          <div class="input-content">
+            <div class="input-group">
+              {{ filter.form.stand.label_tag }}
+              {{ filter.form.stand }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 mx-0 mt-3">
+        <button class="br-button primary rounder-md flex-grow-1 mb-1" type="submit" name="filtrar">
+          <i class="fa fa-filter"></i>
+          {% translate "Filtrar" %}
+        </button>
+      </div>
+    </div>
+  </section>
+</form>
 
 <h1>Lista de Reservas</h1>
 
